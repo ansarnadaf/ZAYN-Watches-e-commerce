@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAYN | Premium Timepieces</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        *{
+            color: #f1f1f1;
+        }
+        :root {
+            --gold: #c5a059;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #9a8c98;
+            color: var(--dark);
+            color: #f8f9fa;
+        }
+
+        /* Navigation */
+        /* This makes all text inside the navbar white */
+.navbar .nav-link, 
+.navbar .navbar-brand {
+    color: #ffffff !important;
+}
+
+
+.navbar-toggler {
+    filter: invert(1);
+}
+
+
+        .navbar {
+            background-color: #22223b;
+            border-bottom: 1px solid #4a4e69;
+            color: white;
+            font-size: 20px;
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 50px;
+            letter-spacing: 2px;
+            color: #f1f1f1;
+        }
+        #navbar{
+            color: #f1f1f1;
+        }
+         
+
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url("https://images.unsplash.com/photo-1692992214153-edeb693a2da3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTM0fHx3YXRjaGVzfGVufDB8fDB8fHww");
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+        }
+
+        /* Product Cards */
+        .card {
+            border: none;
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .product-img-container {
+            background: #c9ada7;
+            padding: 20px;
+            border-radius: 8px;
+
+        }
+        .btn-gold {
+            background-color: var(--gold);
+            color: rgba(255, 255, 255, 0.722);
+            border: none;
+            padding: 10px 25px;
+        }
+        .btn-gold:hover {
+            background-color: #b38f4d;
+            color: white;
+        }
+
+        /* Cart Sidebar */
+        #cartSidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: 0.4s;
+            z-index: 1050;
+            padding: 20px;
+        }
+        #cartSidebar.active {
+            right: 0;
+        }
+        .cart-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: white;
+            z-index: 1040;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">ZAYN</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link"  href="#">Collections</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Heritage</a></li>
+                    <li class="nav-item">
+                        <button class="btn position-relative" onclick="toggleCart()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v11a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                            </svg>
+                            <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1 class="display-2">Timeless Elegance</h1>
+            <p class="lead mb-4">Look the classy and LUxirius.</p>
+            <a href="#shop" class="btn btn-gold btn-lg">Shop Collection</a>
+        </div>
+    </header>
+
+    <section id="shop" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-6">Featured Timepieces</h2>
+                <div class="mx-auto" style="width: 50px; height: 3px; background: var(--gold);"></div>
+            </div>
+
+            <div class="row" id="product-list">
+                </div>
+        </div>
+    </section>
+
+    <div class="cart-overlay" onclick="toggleCart()"></div>
+    <div id="cartSidebar">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4>Your Cart</h4>
+            <button class="btn-close" onclick="toggleCart()"></button>
+        </div>
+        <div id="cart-items-container">
+            </div>
+        <hr>
+        <div class="d-flex justify-content-between">
+            <h5>Total:</h5>
+            <h5 id="cart-total">$0.00</h5>
+        </div>
+        <button class="btn btn-dark w-100 mt-3 py-3">CHECKOUT</button>
+    </div>
+
+    <footer class="bg-dark text-white py-5">
+        <div class="container text-center">
+            <p>&copy; 2024 ZAYN Luxury Watches. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Sample Product Data
+        const products = [
+            { id: 1, name: "Chronos Silver", price: 1250, img: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=400&q=80" },
+            { id: 2, name: "Midnight Stealth", price: 890, img: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=400&q=80" },
+            { id: 3, name: "Ocean Master", price: 2100, img: "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdhdGNoZXN8ZW58MHx8MHx8fDA%3D" },
+            { id: 4, name: "Rose Gold Classic", price: 1550, img: "https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=400&q=80" }
+        ];
+
+        let cart = [];
+
+        // Load Products
+        function loadProducts() {
+            const container = document.getElementById('product-list');
+            container.innerHTML = products.map(p => `
+                <div class="col-md-3">
+                    <div class="card h-100">
+                        <div class="product-img-container">
+                            <img src="${p.img}" class="card-img-top img-fluid" alt="${p.name}">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">${p.name}</h5>
+                            <p class="text-muted">$${p.price.toLocaleString()}</p>
+                            <button onclick="addToCart(${p.id})" class="btn btn-gold w-100">Add to Bag</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Cart Logic
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('active');
+            document.querySelector('.cart-overlay').style.display = 
+                document.getElementById('cartSidebar').classList.contains('active') ? 'block' : 'none';
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            cart.push(product);
+            updateCart();
+            // Open cart automatically when item added
+            if(!document.getElementById('cartSidebar').classList.contains('active')) toggleCart();
+        }
+
+        function updateCart() {
+            const cartContainer = document.getElementById('cart-items-container');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+            
+            cartCount.innerText = cart.length;
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p class="text-center">Your bag is empty</p>';
+                cartTotal.innerText = '$0.00';
+                return;
+            }
+
+            let total = 0;
+            cartContainer.innerHTML = cart.map((item, index) => {
+                total += item.price;
+                return `
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="${item.img}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 15px;">
+                        <div>
+                            <h6 class="mb-0">${item.name}</h6>
+                            <small>$${item.price}</small>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            cartTotal.innerText = `$${total.toLocaleString()}`;
+        }
+
+        // Initialize
+        loadProducts();
+    </script>
+</body>
+</html>
