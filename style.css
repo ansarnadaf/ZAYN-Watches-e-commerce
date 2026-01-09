@@ -1,0 +1,43 @@
+/* Checkout Button Container */
+.checkout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background-color: #1a1a1a; /* Dark background */
+    color: #ffffff;
+    border: 2px solid #c5a059; /* Gold border */
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+/* Hover State */
+.checkout-btn:hover {
+    background-color: #c5a059; /* Changes to Gold */
+    color: #1a1a1a; /* Text turns dark */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* The Icon Styling */
+.checkout-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.checkout-btn:hover svg {
+    transform: translateX(5px); /* Arrow moves slightly right */
+}
+
+/* Active/Click State */
+.checkout-btn:active {
+    transform: translateY(0);
+}
